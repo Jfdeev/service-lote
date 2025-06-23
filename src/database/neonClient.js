@@ -1,17 +1,15 @@
-import { Pool } from 'pg';
 import dotenv from 'dotenv';
+import pkg from 'pg';
 
 dotenv.config();
+
+const { Pool } = pkg;
 
 const db = new Pool({
   connectionString: process.env.NEON_DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false
-  }
-});
-
-db.on('connect', () => {
-  console.log('Conectado ao banco de dados NeonDB');
+    rejectUnauthorized: false,
+  },
 });
 
 export default db;
